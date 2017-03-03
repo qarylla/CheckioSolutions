@@ -1,0 +1,27 @@
+function mostWanted(data){    
+  var alphabet = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);    
+  var i = 0;    
+  
+  while(i < data.length){
+    var character = data.toLowerCase().charAt(i);  // retrieve a character and convert it to lower case 
+    var charCode = character.charCodeAt();  // convert character to its ASCII character code
+    alphabet[charCode % 97] = alphabet[charCode % 97] + 1;  //use mod-97 (97 is lower case 'a') to place characters in array
+    
+    /*
+    Note: there is no error handling in this case for ASCII characters outside of the range 97 to 122. A more complete version would
+    check if the character code was within that range first before adding the character count to the array.
+    */
+    
+    i++;    
+    }    
+    
+    var j = 1;    
+    var max = 0;    
+    
+    for(; j < alphabet.length; j++){
+      if(alphabet[j] > alphabet[max]) { max = j; } // calculate the index of the maximum count in the string.   
+      }    
+      
+  var result = String.fromCharCode(97+max);  // convert index to lower case character code.
+  return result;
+}
