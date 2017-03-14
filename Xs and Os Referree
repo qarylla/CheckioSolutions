@@ -1,0 +1,54 @@
+var SIZE = 3;
+function xoReferee(data) {    
+
+  // indexes for the x and y directions
+  var row;
+  var col;
+  var winx, wino;
+  
+  // simple row check
+  for(row = 0; row < SIZE; row++){
+    winx = 0;
+    wino = 0;
+    for(col = 0; col < SIZE; col++){
+      if(data[row][col] == "X"){ winx += 1; }
+      if(data[row][col] == "O"){ wino += 1; }        
+      }        
+    if(winx == 3) { return "X"; }
+    if(wino == 3) { return "O"; }    
+    }
+    
+  // check columns
+  row = 0;
+  for(col = 0; col < SIZE; col++){
+    if(data[row][col] == "X" && data[row+1][col] == "X" && data[row+2][col] == "X") { return "X"; }
+    else if(data[row][col] == "O" && data[row+1][col] == "O" && data[row+2][col] == "O"){ return "O"; }
+    }
+    
+  row = 0;
+  col = 0;
+  winx = 0;
+  wino = 0;    
+  // check diagonal top left to bottom right    
+  for(; row < SIZE, col < SIZE; row++, col++){
+    if(data[row][col] == "X") { winx += 1; }
+    if(data[row][col] == "O") { wino += 1; }
+    if(winx == 3) { return "X" };
+    if(wino == 3) { return "O" };    
+    }
+    
+  row = 0;
+  col = SIZE-1;
+  winx = 0;
+  wino = 0;
+  // check for diagonal top right to bottom left
+  for(; row < SIZE, col >= 0; row++, col--){
+    if(data[row][col] == "X") { winx += 1; }
+    if(data[row][col] == "O") { wino += 1; }
+    if(winx == 3) { return "X"; }
+    if(wino == 3) { return "O"; }
+  }
+  
+  return "D";
+  
+  }
